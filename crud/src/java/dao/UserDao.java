@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package dao;
 
 import entities.User;
@@ -20,7 +17,7 @@ import javax.naming.NamingException;
  * @author pascalfares
  */
 public class UserDao {
-    public void addUser(User user) throws SQLException, NamingException {
+    public static void addUser(User user) throws SQLException, NamingException {
             Connection connection = GM.getTestDB().getConnection();
             PreparedStatement preparedStatement = connection
                     .prepareStatement("insert into users(firstname,lastname,dob,email) values (?, ?, ?, ? )");
@@ -34,7 +31,7 @@ public class UserDao {
       
     }
 
-    public void deleteUser(int userId) throws NamingException, SQLException {
+    public static void deleteUser(int userId) throws NamingException, SQLException {
         Connection connection = GM.getTestDB().getConnection();
             PreparedStatement preparedStatement = connection
                     .prepareStatement("delete from users where userid=?");
@@ -44,7 +41,7 @@ public class UserDao {
 
     }
 
-    public void updateUser(User user) throws NamingException, SQLException {
+    public static void updateUser(User user) throws NamingException, SQLException {
         Connection connection = GM.getTestDB().getConnection();
             PreparedStatement preparedStatement = connection
                     .prepareStatement("update users set firstname=?, lastname=?, dob=?, email=?" +
@@ -60,7 +57,7 @@ public class UserDao {
         
     }
 
-    public List<User> getAllUsers() throws NamingException, SQLException {
+    public static List<User> getAllUsers() throws NamingException, SQLException {
         List<User> users = new ArrayList<User>();
         Connection connection = GM.getTestDB().getConnection();
             Statement statement = connection.createStatement();
@@ -70,7 +67,7 @@ public class UserDao {
                 user.setUserid(rs.getInt("userid"));
                 user.setFirstName(rs.getString("firstname"));
                 user.setLastName(rs.getString("lastname"));
-                user.setDob(rs.getDate("dob"));
+                user.setDob(new java.util.Date(rs.getDate("dob").getTime()));
                 user.setEmail(rs.getString("email"));
                 users.add(user);
             }
@@ -79,7 +76,7 @@ public class UserDao {
         return users;
     }
 
-    public User getUserById(int userId) throws NamingException, SQLException {
+    public static User getUserById(int userId) throws NamingException, SQLException {
         User user = new User();
         Connection connection = GM.getTestDB().getConnection();
             PreparedStatement preparedStatement = connection.

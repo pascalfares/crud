@@ -17,7 +17,7 @@ public class GM {
 
     public static DataSource getTestDB() throws NamingException {
         Context c = new InitialContext();
-        return (DataSource) c.lookup("java:comp/env/TestDB");
+        return (DataSource) c.lookup("java:comp/env/jdbc/TestDB");
     }
     
 }
