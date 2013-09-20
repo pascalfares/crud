@@ -4,7 +4,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Crud Example : Create a user</title>
     </h:head>
     <h:body>
         <f:view>
@@ -13,15 +13,14 @@
                 <h:inputText id="nom" value="#{userControl.selectedUser.lastName}" />
                 <h:outputLabel value="PreNom" for="prenom" />
                 <h:inputText id="prenom" value="#{userControl.selectedUser.firstName}" />
+                 <h:outputLabel value="Email" for="email" />
                 <h:inputText id="email" required="true" label="email" size="40"
                              requiredMessage="Please enter your email address."
                              validatorMessage="Invalid email format"
                              value="#{userControl.selectedUser.email}">
                     <f:validateRegex
                         pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-
                 </h:inputText>
-
                 <h:message for="email" />
                 <h:inputText value="#{userControl.selectedUser.dob}" >
                     <f:convertDateTime pattern="dd-MM-yyyy" />
@@ -29,8 +28,6 @@
                 <h:commandButton action="#{userControl.create()}" value="Create" />
             </h:form>
         </f:view>
-
     </h:body>
-
 </html>
 

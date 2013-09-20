@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package mb;
 
 import dao.UserDao;
@@ -13,7 +9,9 @@ import javax.faces.bean.SessionScoped;
 import javax.naming.NamingException;
 
 /**
- *
+ * A minimal Managed Bean for CRUD 2 attributes
+ * one for current User
+ * one for the list of users
  * @author pfares
  */
 @ManagedBean
